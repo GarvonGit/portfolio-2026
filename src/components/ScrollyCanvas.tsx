@@ -29,8 +29,12 @@ export default function ScrollyCanvas() {
       img.onload = () => {
         loadedCount++;
         if (loadedCount === FRAME_COUNT) {
-          setImages(loadedImages);
+          setImages([...loadedImages]);
+          console.log("All canvas frames loaded successfully.");
         }
+      };
+      img.onerror = () => {
+        console.error(`Failed to load frame: /frames/frame_${indexStr}_delay-0.041s.png`);
       };
       loadedImages.push(img);
     }
