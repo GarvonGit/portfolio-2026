@@ -8,7 +8,7 @@ import {
   Bot, FileText, Sparkles, Terminal,
   ShoppingCart, Smartphone,
   CloudSun, Chrome, ListTodo, Github,
-  Code2, Wrench, Globe
+  Code2, Wrench, Globe, Hotel, CalendarDays, TrendingUp, BedDouble, Zap, LayoutDashboard
 } from "lucide-react";
 
 /* ------------------------------------------------------------------ */
@@ -230,6 +230,209 @@ export default function FeaturedProject() {
           title={<>Full-Stack <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">Applications</span></>}
           gradient="bg-cyan-500/10 border border-cyan-500/20 text-cyan-400"
         />
+
+        {/* Roomora — Hotel Management SaaS */}
+        <div className="mb-32 md:mb-48">
+          <ProjectRow
+            badge="SaaS / AI Pricing Engine"
+            badgeColor="bg-orange-500/10 border border-orange-500/20 text-orange-400"
+            badgeIcon={<Hotel size={16} />}
+            title={<>Roo<span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-amber-400">mora</span></>}
+            description="A full-featured hotel management SaaS platform built for independent hoteliers. Features an AI-powered dynamic pricing engine (Ollama), OTA channel management, a real-time calendar with profit/loss visualization, Indian holiday integration, and a stunning Supabase-backed authentication system."
+            extra={
+              <div className="flex flex-wrap gap-2 mb-4">
+                {["Next.js", "Supabase", "Ollama AI", "FastAPI", "Python"].map((t) => (
+                  <span key={t} className="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-neutral-400 text-xs font-mono">{t}</span>
+                ))}
+              </div>
+            }
+            ctaLabel="View Dashboard"
+            ctaHref="https://roomora-xi.vercel.app"
+            githubHref="https://github.com/GarvonGit/roomora"
+            mockup={
+              <div className="w-full aspect-[16/10] rounded-[24px] border border-white/10 bg-[#0f0f0f] shadow-2xl relative overflow-hidden flex flex-col group">
+                <div className="absolute inset-0 bg-gradient-to-br from-orange-500/5 via-transparent to-amber-500/3 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+
+                {/* ── Browser top bar ── */}
+                <div className="h-9 border-b border-white/5 flex items-center px-3 gap-2 bg-[#141414] shrink-0">
+                  <div className="w-2 h-2 rounded-full bg-red-500/60" />
+                  <div className="w-2 h-2 rounded-full bg-yellow-500/60" />
+                  <div className="w-2 h-2 rounded-full bg-green-500/60" />
+                  <div className="mx-auto flex items-center gap-1.5 px-3 py-0.5 rounded-md bg-white/5 border border-white/5">
+                    <div className="w-1.5 h-1.5 rounded-full bg-green-400/60" />
+                    <span className="text-[9px] text-neutral-500 font-mono">roomora-xi.vercel.app/dashboard</span>
+                  </div>
+                </div>
+
+                {/* ── App shell ── */}
+                <div className="flex flex-1 overflow-hidden">
+
+                  {/* Sidebar */}
+                  <div className="w-9 bg-[#0a0a0a] border-r border-white/5 flex flex-col items-center py-3 gap-3 shrink-0">
+                    {/* Logo */}
+                    <div className="w-5 h-5 rounded-md bg-gradient-to-br from-orange-500 to-amber-400 flex items-center justify-center mb-1">
+                      <Hotel size={10} className="text-white" />
+                    </div>
+                    <div className="w-full h-px bg-white/5 my-0.5" />
+                    {/* Nav items */}
+                    {[
+                      { icon: <LayoutDashboard size={12} />, active: true },
+                      { icon: <CalendarDays size={12} />, active: false },
+                      { icon: <BedDouble size={12} />, active: false },
+                      { icon: <TrendingUp size={12} />, active: false },
+                    ].map((item, i) => (
+                      <div key={i} className={`relative w-7 h-7 rounded-lg flex items-center justify-center ${item.active ? "bg-orange-500/20 text-orange-400" : "text-neutral-600 hover:text-neutral-400"}`}>
+                        {item.active && <div className="absolute -left-[1px] top-1 bottom-1 w-0.5 rounded-full bg-orange-400" />}
+                        {item.icon}
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Main content */}
+                  <div className="flex-1 flex flex-col overflow-hidden bg-[#0d0d0d]">
+
+                    {/* Top bar */}
+                    <div className="h-8 border-b border-white/5 flex items-center px-3 gap-2 shrink-0 bg-[#0d0d0d]">
+                      <p className="text-[9px] font-bold text-white">Dashboard</p>
+                      <span className="text-neutral-700 text-[8px]">/</span>
+                      <p className="text-[9px] text-neutral-500">April 2026</p>
+                      <div className="ml-auto flex items-center gap-1.5">
+                        <div className="flex items-center gap-1 px-1.5 py-0.5 rounded-full bg-orange-500/10 border border-orange-500/20">
+                          <Zap size={7} className="text-orange-400" />
+                          <span className="text-[7px] text-orange-400 font-mono">AI Active</span>
+                        </div>
+                        <div className="w-5 h-5 rounded-full bg-gradient-to-br from-orange-400 to-amber-500 flex items-center justify-center">
+                          <span className="text-[7px] font-bold text-white">G</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Body */}
+                    <div className="flex-1 p-2.5 flex flex-col gap-2 overflow-hidden">
+
+                      {/* KPI row */}
+                      <div className="grid grid-cols-4 gap-1.5 shrink-0">
+                        {[
+                          { label: "Occupancy", value: "87%", delta: "+4%", color: "text-orange-400", glow: "bg-orange-500/10 border-orange-500/20" },
+                          { label: "RevPAR", value: "₹4,820", delta: "+12%", color: "text-amber-400", glow: "bg-amber-500/10 border-amber-500/20" },
+                          { label: "AI Suggest", value: "₹6,200", delta: "↑ surge", color: "text-green-400", glow: "bg-green-500/10 border-green-500/20" },
+                          { label: "Bookings", value: "34", delta: "+8 today", color: "text-sky-400", glow: "bg-sky-500/10 border-sky-500/20" },
+                        ].map((s) => (
+                          <div key={s.label} className={`rounded-lg border ${s.glow} p-1.5 flex flex-col gap-0.5`}>
+                            <p className="text-[7px] text-neutral-500 uppercase tracking-wider">{s.label}</p>
+                            <p className={`text-[11px] font-bold leading-none ${s.color}`}>{s.value}</p>
+                            <p className="text-[7px] text-neutral-600">{s.delta}</p>
+                          </div>
+                        ))}
+                      </div>
+
+                      {/* Middle row: chart + calendar */}
+                      <div className="flex gap-2 flex-1 min-h-0">
+
+                        {/* Revenue bar chart */}
+                        <div className="flex-1 rounded-xl bg-[#131313] border border-white/5 p-2 flex flex-col gap-1.5 min-w-0">
+                          <div className="flex items-center justify-between">
+                            <p className="text-[8px] font-semibold text-neutral-400 uppercase tracking-wide">Revenue · Week</p>
+                            <p className="text-[7px] text-green-400 font-mono">+18% vs last wk</p>
+                          </div>
+                          <div className="flex-1 flex items-end gap-1 pb-1">
+                            {[42, 65, 38, 80, 55, 90, 72].map((h, i) => (
+                              <motion.div
+                                key={i}
+                                initial={{ height: "5%" }}
+                                whileInView={{ height: `${h}%` }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.8, delay: i * 0.07, ease: [0.25, 0.46, 0.45, 0.94] }}
+                                className="flex-1 rounded-sm"
+                                style={{ background: i === 5 ? "linear-gradient(to top, #f97316, #fbbf24)" : "rgba(249,115,22,0.2)" }}
+                              />
+                            ))}
+                          </div>
+                          <div className="flex justify-between">
+                            {["M", "T", "W", "T", "F", "S", "S"].map((d, i) => (
+                              <span key={i} className="flex-1 text-center text-[6px] text-neutral-600 font-mono">{d}</span>
+                            ))}
+                          </div>
+                        </div>
+
+                        {/* Pricing Calendar */}
+                        <div className="w-[52%] rounded-xl bg-[#131313] border border-white/5 p-2 flex flex-col gap-1.5 shrink-0">
+                          <div className="flex items-center justify-between">
+                            <p className="text-[8px] font-semibold text-neutral-400 uppercase tracking-wide flex items-center gap-1">
+                              <CalendarDays size={7} /> Pricing · Apr 2026
+                            </p>
+                            <div className="flex gap-1">
+                              <div className="w-1.5 h-1.5 rounded-full bg-orange-400" />
+                              <div className="w-1.5 h-1.5 rounded-full bg-amber-400" />
+                              <div className="w-1.5 h-1.5 rounded-full bg-white/20" />
+                            </div>
+                          </div>
+                          {/* Day headers */}
+                          <div className="grid grid-cols-7 gap-0.5">
+                            {["S","M","T","W","T","F","S"].map((d,i)=>(
+                              <div key={i} className="text-center text-[5px] text-neutral-600 font-bold uppercase">{d}</div>
+                            ))}
+                          </div>
+                          {/* Date cells */}
+                          <div className="grid grid-cols-7 gap-0.5 flex-1">
+                            {[...Array(2)].map((_, i) => <div key={`e${i}`} />)}
+                            {[...Array(30)].map((_, i) => {
+                              const weekend = [0,6].includes((i + 2) % 7);
+                              const holiday = [13, 14].includes(i);
+                              const surge = [4,5,11,12,18,19,25,26].includes(i);
+                              const today = i === 6;
+                              return (
+                                <div key={i} className={`rounded aspect-square flex items-center justify-center text-[6px] font-mono transition-all ${
+                                  today ? "bg-orange-500 text-white font-bold ring-1 ring-orange-300/30" :
+                                  holiday ? "bg-amber-500/25 border border-amber-500/40 text-amber-300" :
+                                  surge ? "bg-orange-500/15 border border-orange-500/25 text-orange-300" :
+                                  weekend ? "bg-white/[0.04] border border-white/8 text-neutral-500" :
+                                  "bg-white/[0.02] border border-white/5 text-neutral-600"
+                                }`}>{i + 1}</div>
+                              );
+                            })}
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Room availability strip */}
+                      <div className="shrink-0 rounded-xl bg-[#131313] border border-white/5 p-2">
+                        <div className="flex items-center justify-between mb-1.5">
+                          <p className="text-[8px] font-semibold text-neutral-400 uppercase tracking-wide">Room Availability</p>
+                          <p className="text-[7px] text-neutral-600 font-mono">12 / 14 occupied</p>
+                        </div>
+                        <div className="flex gap-1">
+                          {[
+                            {name:"101", status:"occupied"}, {name:"102", status:"occupied"}, {name:"103", status:"vacant"},
+                            {name:"201", status:"occupied"}, {name:"202", status:"checkin"}, {name:"203", status:"occupied"},
+                            {name:"301", status:"occupied"}, {name:"302", status:"occupied"}, {name:"303", status:"vacant"},
+                            {name:"401", status:"occupied"}, {name:"402", status:"occupied"}, {name:"403", status:"occupied"},
+                          ].map((r) => (
+                            <div key={r.name} className={`flex-1 rounded-md py-1 flex flex-col items-center gap-0.5 ${
+                              r.status === "occupied" ? "bg-orange-500/15 border border-orange-500/20" :
+                              r.status === "checkin" ? "bg-green-500/15 border border-green-500/20" :
+                              "bg-white/[0.03] border border-white/5"
+                            }`}>
+                              <div className={`w-1.5 h-1.5 rounded-full ${
+                                r.status === "occupied" ? "bg-orange-400" :
+                                r.status === "checkin" ? "bg-green-400" : "bg-neutral-600"
+                              }`} />
+                              <p className={`text-[5px] font-mono ${
+                                r.status === "occupied" ? "text-orange-400" :
+                                r.status === "checkin" ? "text-green-400" : "text-neutral-600"
+                              }`}>{r.name}</p>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            }
+          />
+        </div>
 
         {/* Portfolio 2026 */}
         <div className="mb-32 md:mb-48">
