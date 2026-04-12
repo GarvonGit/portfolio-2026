@@ -256,7 +256,7 @@ export default function FeaturedProject() {
         <CategoryHeader
           icon={<Globe size={16} />}
           label="Web Development"
-          title={<>Web & Digital <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">Experiences</span></>}
+          title={<>Projects & Case <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">Studies</span></>}
           gradient="bg-cyan-500/10 border border-cyan-500/20 text-cyan-400"
         />
 
@@ -562,57 +562,10 @@ export default function FeaturedProject() {
           />
         </div>
 
-        {/* Portfolio 2026 */}
+        {/* Agendo — Productivity System */}
         <div className="mb-32 md:mb-48">
           <ProjectRow
             reverse
-            badge="Next.js / Framer Motion"
-            badgeColor="bg-violet-500/10 border border-violet-500/20 text-violet-400"
-            badgeIcon={<Code2 size={16} />}
-            title={<>Portfolio <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-pink-400">2026</span></>}
-            description="My personal developer portfolio — the very site you're browsing right now. Built with Next.js, Framer Motion, and TailwindCSS featuring scroll-driven animations, horizontal storytelling, glassmorphism, and a hyper-modern dark aesthetic."
-            ctaLabel="You're Here!"
-            ctaHref="#"
-            githubHref="https://github.com/GarvonGit/portfolio-2026"
-            mockup={
-              <div className="w-full aspect-[16/10] rounded-[24px] border border-white/10 bg-[#111] shadow-2xl relative overflow-hidden flex flex-col group">
-                <div className="absolute inset-0 bg-gradient-to-br from-violet-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-                <div className="h-10 border-b border-white/5 flex items-center px-4 gap-2 bg-[#161616]">
-                  <div className="w-2.5 h-2.5 rounded-full bg-red-500/50" />
-                  <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/50" />
-                  <div className="w-2.5 h-2.5 rounded-full bg-green-500/50" />
-                  <div className="mx-auto px-3 py-0.5 rounded bg-white/5 text-[10px] text-neutral-500 font-mono">garvchouhan.dev</div>
-                </div>
-                <div className="flex-1 p-6 flex flex-col gap-4">
-                  <div className="w-full h-12 rounded-lg bg-gradient-to-r from-violet-500/10 to-pink-500/10 border border-white/5 flex items-center px-4">
-                     <div className="w-24 h-4 rounded bg-white/10" />
-                    <div className="ml-auto flex gap-2">
-                      <div className="w-8 h-3 rounded bg-white/10" />
-                      <div className="w-8 h-3 rounded bg-white/10" />
-                      <div className="w-8 h-3 rounded bg-white/10" />
-                    </div>
-                  </div>
-                  <div className="flex gap-4 flex-1">
-                    <div className="flex-1 rounded-xl bg-white/[0.02] border border-white/5 p-4 flex flex-col gap-2">
-                      <div className="w-3/4 h-3 rounded bg-violet-500/20" />
-                      <div className="w-1/2 h-3 rounded bg-white/5" />
-                      <div className="mt-auto w-16 h-6 rounded-full bg-violet-500/20 border border-violet-500/30" />
-                    </div>
-                    <div className="flex-1 rounded-xl bg-white/[0.02] border border-white/5 p-4 flex flex-col gap-2">
-                      <div className="w-2/3 h-3 rounded bg-pink-500/20" />
-                      <div className="w-1/2 h-3 rounded bg-white/5" />
-                      <div className="mt-auto w-16 h-6 rounded-full bg-pink-500/20 border border-pink-500/30" />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            }
-          />
-        </div>
-
-        {/* Agendo — Productivity System */}
-        <div className="mb-16">
-          <ProjectRow
             badge="Productivity / React"
             badgeColor="bg-amber-500/10 border border-amber-500/20 text-amber-400"
             badgeIcon={<ListTodo size={16} />}
@@ -655,6 +608,53 @@ export default function FeaturedProject() {
                   <div className="w-full h-10 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center px-4 gap-2">
                     <Plus size={12} className="text-amber-500" />
                     <div className="w-20 h-3 rounded bg-white/5" />
+                  </div>
+                </div>
+              </div>
+            }
+          />
+        </div>
+
+        {/* Portfolio 2026 */}
+        <div className="mb-16">
+          <ProjectRow
+            badge="Next.js / Framer Motion"
+            badgeColor="bg-violet-500/10 border border-violet-500/20 text-violet-400"
+            badgeIcon={<Code2 size={16} />}
+            title={<>Portfolio <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-pink-400">2026</span></>}
+            description="My personal developer portfolio — the very site you're browsing right now. Built with Next.js, Framer Motion, and TailwindCSS featuring scroll-driven animations, horizontal storytelling, glassmorphism, and a hyper-modern dark aesthetic."
+            ctaLabel="You're Here!"
+            ctaHref="#"
+            githubHref="https://github.com/GarvonGit/portfolio-2026"
+            mockup={
+              <div className="w-full aspect-[16/10] rounded-[24px] border border-white/10 bg-[#111] shadow-2xl relative overflow-hidden flex flex-col group">
+                <div className="absolute inset-0 bg-gradient-to-br from-violet-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                <div className="h-10 border-b border-white/5 flex items-center px-4 gap-2 bg-[#161616]">
+                  <div className="w-2.5 h-2.5 rounded-full bg-red-500/50" />
+                  <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/50" />
+                  <div className="w-2.5 h-2.5 rounded-full bg-green-500/50" />
+                  <div className="mx-auto px-3 py-0.5 rounded bg-white/5 text-[10px] text-neutral-500 font-mono">garvchouhan.dev</div>
+                </div>
+                <div className="flex-1 p-6 flex flex-col gap-4">
+                  <div className="w-full h-12 rounded-lg bg-gradient-to-r from-violet-500/10 to-pink-500/10 border border-white/5 flex items-center px-4">
+                     <div className="w-24 h-4 rounded bg-white/10" />
+                    <div className="ml-auto flex gap-2">
+                      <div className="w-8 h-3 rounded bg-white/10" />
+                      <div className="w-8 h-3 rounded bg-white/10" />
+                      <div className="w-8 h-3 rounded bg-white/10" />
+                    </div>
+                  </div>
+                  <div className="flex gap-4 flex-1">
+                    <div className="flex-1 rounded-xl bg-white/[0.02] border border-white/5 p-4 flex flex-col gap-2">
+                      <div className="w-3/4 h-3 rounded bg-violet-500/20" />
+                      <div className="w-1/2 h-3 rounded bg-white/5" />
+                      <div className="mt-auto w-16 h-6 rounded-full bg-violet-500/20 border border-violet-500/30" />
+                    </div>
+                    <div className="flex-1 rounded-xl bg-white/[0.02] border border-white/5 p-4 flex flex-col gap-2">
+                      <div className="w-2/3 h-3 rounded bg-pink-500/20" />
+                      <div className="w-1/2 h-3 rounded bg-white/5" />
+                      <div className="mt-auto w-16 h-6 rounded-full bg-pink-500/20 border border-pink-500/30" />
+                    </div>
                   </div>
                 </div>
               </div>
