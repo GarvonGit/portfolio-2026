@@ -1,14 +1,16 @@
 "use client";
 
 import { useRef } from "react";
+import Link from "next/link";
 import { motion, useScroll, useTransform } from "framer-motion";
 import {
   ArrowUpRight, Activity, ShieldCheck, Database, Layers,
   Gamepad2, Trophy, Medal,
   Bot, FileText, Sparkles, Terminal,
   ShoppingCart, Smartphone,
-  CloudSun, Chrome, ListTodo, Github,
-  Code2, Wrench, Globe, Hotel, CalendarDays, TrendingUp, BedDouble, Zap, LayoutDashboard
+  CloudSun, Chrome, ListTodo, Plus, Github,
+  Code2, Wrench, Globe, Hotel, CalendarDays, TrendingUp, BedDouble, Zap, LayoutDashboard,
+  ExternalLink, BarChart3, AlertTriangle, MapPin, Users
 } from "lucide-react";
 
 /* ------------------------------------------------------------------ */
@@ -38,13 +40,13 @@ function ProjectRow({
   reverse = false,
   badge, badgeColor, badgeIcon,
   title, description, extra,
-  ctaLabel, ctaHref, githubHref,
+  ctaLabel, ctaHref, githubHref, detailHref,
   mockup, delay = 0,
 }: {
   reverse?: boolean;
   badge: string; badgeColor: string; badgeIcon: React.ReactNode;
   title: React.ReactNode; description: string; extra?: React.ReactNode;
-  ctaLabel: string; ctaHref: string; githubHref?: string;
+  ctaLabel: string; ctaHref: string; githubHref?: string; detailHref?: string;
   mockup: React.ReactNode; delay?: number;
 }) {
   return (
@@ -63,13 +65,28 @@ function ProjectRow({
         <p className="text-base md:text-lg text-neutral-400 leading-relaxed mb-6">{description}</p>
         {extra}
         <div className="flex items-center gap-4 mt-2 flex-wrap">
-          <a href={ctaHref} target="_blank" rel="noreferrer" className="inline-flex items-center gap-3 px-7 py-3.5 rounded-full bg-white text-black font-bold text-sm hover:scale-105 transition-transform duration-300 group">
-            {ctaLabel} <ArrowUpRight size={18} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-          </a>
+          {ctaHref !== "#" ? (
+            <a href={ctaHref} target="_blank" rel="noreferrer" className="inline-flex items-center gap-3 px-7 py-3.5 rounded-full bg-white text-black font-bold text-sm hover:scale-105 transition-transform duration-300 group">
+              {ctaLabel} <ArrowUpRight size={18} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+            </a>
+          ) : (
+            <span className="inline-flex items-center gap-3 px-7 py-3.5 rounded-full bg-white text-black font-bold text-sm opacity-60 cursor-default">
+              {ctaLabel}
+            </span>
+          )}
           {githubHref && (
             <a href={githubHref} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 px-5 py-3.5 rounded-full bg-white/5 border border-white/10 text-neutral-300 font-semibold text-sm hover:border-white/20 hover:bg-white/10 transition-all duration-300">
               <Github size={16} /> Source
             </a>
+          )}
+          {detailHref && (
+            <Link
+              href={detailHref}
+              className="inline-flex items-center gap-2 px-5 py-3.5 rounded-full bg-white/5 border border-white/10 text-neutral-300 font-semibold text-sm hover:border-white/20 hover:bg-white/10 transition-all duration-300 group/detail"
+            >
+              <ExternalLink size={14} className="group-hover/detail:scale-110 transition-transform" />
+              Case Study
+            </Link>
           )}
         </div>
       </motion.div>
@@ -92,11 +109,11 @@ function ProjectRow({
 /* ------------------------------------------------------------------ */
 function ToolCard({
   icon, title, description,
-  liveHref, githubHref,
+  liveHref, githubHref, detailHref,
   accentColor, glowColor, index = 0,
 }: {
   icon: React.ReactNode; title: string; description: string;
-  liveHref?: string; githubHref?: string;
+  liveHref?: string; githubHref?: string; detailHref?: string;
   accentColor: string; glowColor: string; index?: number;
 }) {
   return (
@@ -127,6 +144,15 @@ function ToolCard({
           <a href={githubHref} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-white/5 border border-white/10 text-neutral-300 text-xs font-semibold hover:bg-white/10 transition-all duration-300">
             <Github size={14} /> Code
           </a>
+        )}
+        {detailHref && (
+          <Link
+            href={detailHref}
+            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-white/5 border border-white/10 text-neutral-300 text-xs font-semibold hover:bg-white/10 hover:border-white/20 transition-all duration-300 group/detail"
+          >
+            <ExternalLink size={12} className="group-hover/detail:scale-110 transition-transform" />
+            Details
+          </Link>
         )}
       </div>
     </motion.div>
@@ -204,6 +230,9 @@ export default function FeaturedProject() {
                   <a href="https://github.com/GarvonGit/aankh" target="_blank" rel="noreferrer" className="flex items-center gap-2 px-5 py-3 rounded-full bg-white/5 border border-white/10 text-neutral-300 font-semibold text-sm hover:bg-white/10 hover:border-white/20 transition-all duration-300">
                     <Github size={16} /> Source Code
                   </a>
+                  <Link href="/projects/aankh" className="flex items-center gap-2 px-5 py-3 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-300 font-semibold text-sm hover:bg-blue-500/20 transition-all duration-300">
+                    <ExternalLink size={14} /> Case Study
+                  </Link>
                 </div>
               </div>
               <div className="w-full h-32 rounded-xl bg-[#1e1e1e] border border-white/5 relative overflow-hidden p-4 flex items-end gap-2">
@@ -227,7 +256,7 @@ export default function FeaturedProject() {
         <CategoryHeader
           icon={<Globe size={16} />}
           label="Web Development"
-          title={<>Full-Stack <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">Applications</span></>}
+          title={<>Web & Digital <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">Experiences</span></>}
           gradient="bg-cyan-500/10 border border-cyan-500/20 text-cyan-400"
         />
 
@@ -249,6 +278,7 @@ export default function FeaturedProject() {
             ctaLabel="View Dashboard"
             ctaHref="https://roomora-xi.vercel.app"
             githubHref="https://github.com/GarvonGit/roomora"
+            detailHref="/projects/roomora"
             mockup={
               <div className="w-full aspect-[16/10] rounded-[24px] border border-white/10 bg-[#0f0f0f] shadow-2xl relative overflow-hidden flex flex-col group">
                 <div className="absolute inset-0 bg-gradient-to-br from-orange-500/5 via-transparent to-amber-500/3 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
@@ -434,47 +464,40 @@ export default function FeaturedProject() {
           />
         </div>
 
-        {/* Portfolio 2026 */}
+        {/* Gearlogy */}
         <div className="mb-32 md:mb-48">
           <ProjectRow
-            badge="Next.js / Framer Motion"
-            badgeColor="bg-violet-500/10 border border-violet-500/20 text-violet-400"
-            badgeIcon={<Code2 size={16} />}
-            title={<>Portfolio <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-pink-400">2026</span></>}
-            description="My personal developer portfolio — the very site you're browsing right now. Built with Next.js, Framer Motion, and TailwindCSS featuring scroll-driven animations, horizontal storytelling, glassmorphism, and a hyper-modern dark aesthetic."
-            ctaLabel="You're Here!"
-            ctaHref="#"
-            githubHref="https://github.com/GarvonGit/portfolio-2026"
+            reverse
+            badge="E-Commerce / Full Stack"
+            badgeColor="bg-emerald-500/10 border border-emerald-500/20 text-emerald-400"
+            badgeIcon={<ShoppingCart size={16} />}
+            title={<>Gear<span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-400">logy</span></>}
+            description="Your premier online destination for electronic gadgets. Discover cutting-edge tech products from smartphones to smart home devices. Shop confidently and experience innovation like never before."
+            ctaLabel="Visit Store"
+            ctaHref="https://gearlogy.netlify.app/"
+            githubHref="https://github.com/GarvonGit/Gearlogy"
+            detailHref="/projects/gearlogy"
             mockup={
               <div className="w-full aspect-[16/10] rounded-[24px] border border-white/10 bg-[#111] shadow-2xl relative overflow-hidden flex flex-col group">
-                <div className="absolute inset-0 bg-gradient-to-br from-violet-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
                 <div className="h-10 border-b border-white/5 flex items-center px-4 gap-2 bg-[#161616]">
                   <div className="w-2.5 h-2.5 rounded-full bg-red-500/50" />
                   <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/50" />
                   <div className="w-2.5 h-2.5 rounded-full bg-green-500/50" />
-                  <div className="mx-auto px-3 py-0.5 rounded bg-white/5 text-[10px] text-neutral-500 font-mono">garvchouhan.dev</div>
+                  <div className="mx-auto px-3 py-0.5 rounded bg-white/5 text-[10px] text-neutral-500 font-mono">gearlogy.netlify.app</div>
                 </div>
-                <div className="flex-1 p-6 flex flex-col gap-4">
-                  <div className="w-full h-12 rounded-lg bg-gradient-to-r from-violet-500/10 to-pink-500/10 border border-white/5 flex items-center px-4">
-                    <div className="w-24 h-4 rounded bg-white/10" />
-                    <div className="ml-auto flex gap-2">
-                      <div className="w-8 h-3 rounded bg-white/10" />
-                      <div className="w-8 h-3 rounded bg-white/10" />
-                      <div className="w-8 h-3 rounded bg-white/10" />
+                <div className="flex-1 p-6 grid grid-cols-3 gap-4">
+                  {[
+                    { name: "Wireless Earbuds", price: "$49", color: "bg-violet-500/20 border-violet-500/30" },
+                    { name: "Smart Watch", price: "$199", color: "bg-emerald-500/20 border-emerald-500/30" },
+                    { name: "Drone Pro", price: "$799", color: "bg-orange-500/20 border-orange-500/30" },
+                  ].map((item) => (
+                    <div key={item.name} className={`rounded-xl border ${item.color} p-4 flex flex-col items-center justify-center gap-2 hover:scale-105 transition-transform duration-300`}>
+                      <Smartphone size={32} className="text-neutral-400" />
+                      <p className="text-xs text-neutral-300 font-semibold text-center">{item.name}</p>
+                      <span className="text-emerald-400 font-bold text-sm">{item.price}</span>
                     </div>
-                  </div>
-                  <div className="flex gap-4 flex-1">
-                    <div className="flex-1 rounded-xl bg-white/[0.02] border border-white/5 p-4 flex flex-col gap-2">
-                      <div className="w-3/4 h-3 rounded bg-violet-500/20" />
-                      <div className="w-1/2 h-3 rounded bg-white/5" />
-                      <div className="mt-auto w-16 h-6 rounded-full bg-violet-500/20 border border-violet-500/30" />
-                    </div>
-                    <div className="flex-1 rounded-xl bg-white/[0.02] border border-white/5 p-4 flex flex-col gap-2">
-                      <div className="w-2/3 h-3 rounded bg-pink-500/20" />
-                      <div className="w-1/2 h-3 rounded bg-white/5" />
-                      <div className="mt-auto w-16 h-6 rounded-full bg-pink-500/20 border border-pink-500/30" />
-                    </div>
-                  </div>
+                  ))}
                 </div>
               </div>
             }
@@ -484,7 +507,6 @@ export default function FeaturedProject() {
         {/* PDF Insider */}
         <div className="mb-32 md:mb-48">
           <ProjectRow
-            reverse
             badge="Generative AI / LLM"
             badgeColor="bg-cyan-500/10 border border-cyan-500/20 text-cyan-400"
             badgeIcon={<Bot size={16} />}
@@ -498,6 +520,7 @@ export default function FeaturedProject() {
             ctaLabel="Start Chatting"
             ctaHref="https://pdf-insider.onrender.com"
             githubHref="https://github.com/GarvonGit/notebooklm-clone"
+            detailHref="/projects/pdf-insider"
             mockup={
               <div className="w-full aspect-square rounded-[24px] border border-white/10 bg-[#111] shadow-2xl relative overflow-hidden flex flex-col group">
                 <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
@@ -539,39 +562,100 @@ export default function FeaturedProject() {
           />
         </div>
 
-        {/* Gearlogy */}
-        <div className="mb-16">
+        {/* Portfolio 2026 */}
+        <div className="mb-32 md:mb-48">
           <ProjectRow
             reverse
-            badge="E-Commerce / Full Stack"
-            badgeColor="bg-emerald-500/10 border border-emerald-500/20 text-emerald-400"
-            badgeIcon={<ShoppingCart size={16} />}
-            title={<>Gear<span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-400">logy</span></>}
-            description="Your premier online destination for electronic gadgets. Discover cutting-edge tech products from smartphones to smart home devices. Shop confidently and experience innovation like never before."
-            ctaLabel="Visit Store"
-            ctaHref="https://gearlogy.netlify.app/"
-            githubHref="https://github.com/GarvonGit/Gearlogy"
+            badge="Next.js / Framer Motion"
+            badgeColor="bg-violet-500/10 border border-violet-500/20 text-violet-400"
+            badgeIcon={<Code2 size={16} />}
+            title={<>Portfolio <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-pink-400">2026</span></>}
+            description="My personal developer portfolio — the very site you're browsing right now. Built with Next.js, Framer Motion, and TailwindCSS featuring scroll-driven animations, horizontal storytelling, glassmorphism, and a hyper-modern dark aesthetic."
+            ctaLabel="You're Here!"
+            ctaHref="#"
+            githubHref="https://github.com/GarvonGit/portfolio-2026"
             mockup={
               <div className="w-full aspect-[16/10] rounded-[24px] border border-white/10 bg-[#111] shadow-2xl relative overflow-hidden flex flex-col group">
-                <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                <div className="absolute inset-0 bg-gradient-to-br from-violet-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
                 <div className="h-10 border-b border-white/5 flex items-center px-4 gap-2 bg-[#161616]">
                   <div className="w-2.5 h-2.5 rounded-full bg-red-500/50" />
                   <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/50" />
                   <div className="w-2.5 h-2.5 rounded-full bg-green-500/50" />
-                  <div className="mx-auto px-3 py-0.5 rounded bg-white/5 text-[10px] text-neutral-500 font-mono">gearlogy.netlify.app</div>
+                  <div className="mx-auto px-3 py-0.5 rounded bg-white/5 text-[10px] text-neutral-500 font-mono">garvchouhan.dev</div>
                 </div>
-                <div className="flex-1 p-6 grid grid-cols-3 gap-4">
-                  {[
-                    { name: "Wireless Earbuds", price: "$49", color: "bg-violet-500/20 border-violet-500/30" },
-                    { name: "Smart Watch", price: "$199", color: "bg-emerald-500/20 border-emerald-500/30" },
-                    { name: "Drone Pro", price: "$799", color: "bg-orange-500/20 border-orange-500/30" },
-                  ].map((item) => (
-                    <div key={item.name} className={`rounded-xl border ${item.color} p-4 flex flex-col items-center justify-center gap-2 hover:scale-105 transition-transform duration-300`}>
-                      <Smartphone size={32} className="text-neutral-400" />
-                      <p className="text-xs text-neutral-300 font-semibold text-center">{item.name}</p>
-                      <span className="text-emerald-400 font-bold text-sm">{item.price}</span>
+                <div className="flex-1 p-6 flex flex-col gap-4">
+                  <div className="w-full h-12 rounded-lg bg-gradient-to-r from-violet-500/10 to-pink-500/10 border border-white/5 flex items-center px-4">
+                     <div className="w-24 h-4 rounded bg-white/10" />
+                    <div className="ml-auto flex gap-2">
+                      <div className="w-8 h-3 rounded bg-white/10" />
+                      <div className="w-8 h-3 rounded bg-white/10" />
+                      <div className="w-8 h-3 rounded bg-white/10" />
                     </div>
-                  ))}
+                  </div>
+                  <div className="flex gap-4 flex-1">
+                    <div className="flex-1 rounded-xl bg-white/[0.02] border border-white/5 p-4 flex flex-col gap-2">
+                      <div className="w-3/4 h-3 rounded bg-violet-500/20" />
+                      <div className="w-1/2 h-3 rounded bg-white/5" />
+                      <div className="mt-auto w-16 h-6 rounded-full bg-violet-500/20 border border-violet-500/30" />
+                    </div>
+                    <div className="flex-1 rounded-xl bg-white/[0.02] border border-white/5 p-4 flex flex-col gap-2">
+                      <div className="w-2/3 h-3 rounded bg-pink-500/20" />
+                      <div className="w-1/2 h-3 rounded bg-white/5" />
+                      <div className="mt-auto w-16 h-6 rounded-full bg-pink-500/20 border border-pink-500/30" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            }
+          />
+        </div>
+
+        {/* Agendo — Productivity System */}
+        <div className="mb-16">
+          <ProjectRow
+            badge="Productivity / React"
+            badgeColor="bg-amber-500/10 border border-amber-500/20 text-amber-400"
+            badgeIcon={<ListTodo size={16} />}
+            title={<>Ag<span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-orange-400">endo</span></>}
+            description="A minimalist, elegant Productivity System built with React.js. Features real-time updates, responsive design, and full CRUD operations for high-efficiency task management."
+            ctaLabel="Try Agendo"
+            ctaHref="https://garvongit.github.io/Agendo/"
+            githubHref="https://github.com/GarvonGit/Agendo"
+            detailHref="/projects/agendo"
+            mockup={
+              <div className="w-full aspect-[16/10] rounded-[24px] border border-white/10 bg-[#0d0d0d] shadow-2xl relative overflow-hidden flex flex-col group">
+                <div className="absolute inset-0 bg-gradient-to-br from-amber-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                <div className="h-10 border-b border-white/5 flex items-center px-4 gap-2 bg-[#151515]">
+                  <div className="w-2.5 h-2.5 rounded-full bg-red-500/50" />
+                  <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/50" />
+                  <div className="w-2.5 h-2.5 rounded-full bg-green-500/50" />
+                  <div className="mx-auto px-3 py-0.5 rounded bg-white/5 text-[10px] text-neutral-500 font-mono">agendo.v1</div>
+                </div>
+                <div className="flex-1 p-6 flex flex-col gap-4">
+                  <div className="w-full flex justify-between items-center mb-2">
+                    <div className="w-24 h-5 rounded bg-amber-500/10 border border-amber-500/20" />
+                    <div className="flex gap-2">
+                      <div className="w-6 h-6 rounded-full bg-white/5" />
+                      <div className="w-6 h-6 rounded-full bg-white/5" />
+                    </div>
+                  </div>
+                  <div className="flex-1 space-y-3">
+                    {[
+                      { text: "Finish portfolio case studies", done: true, p: "H" },
+                      { text: "Optimize React state loops", done: false, p: "M" },
+                      { text: "Implement drag-to-sort", done: false, p: "M" },
+                    ].map((task, i) => (
+                      <div key={i} className={`flex items-center gap-3 p-3 rounded-xl border ${task.done ? 'bg-amber-500/5 border-amber-500/20' : 'bg-white/[0.02] border-white/5'}`}>
+                        <div className={`w-4 h-4 rounded-full border ${task.done ? 'bg-amber-500 border-amber-500' : 'border-white/10'}`} />
+                        <span className={`text-[10px] flex-1 ${task.done ? 'line-through text-neutral-600' : 'text-neutral-400'}`}>{task.text}</span>
+                        <span className="text-[8px] font-mono text-neutral-600">{task.p}</span>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="w-full h-10 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center px-4 gap-2">
+                    <Plus size={12} className="text-amber-500" />
+                    <div className="w-20 h-3 rounded bg-white/5" />
+                  </div>
                 </div>
               </div>
             }
@@ -602,6 +686,7 @@ export default function FeaturedProject() {
           ctaLabel="Play the Game"
           ctaHref="https://effulgent-licorice-34ac18.netlify.app/"
           githubHref="https://github.com/GarvonGit/FlapJet"
+          detailHref="/projects/flappy-jet"
           mockup={
             <div className="w-full aspect-[4/3] rounded-[32px] border-[8px] border-[#1e1e1e] bg-[#2a2a2a] shadow-2xl relative overflow-hidden flex flex-col items-center justify-center pointer-events-none group">
               <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
@@ -642,7 +727,7 @@ export default function FeaturedProject() {
           gradient="bg-amber-500/10 border border-amber-500/20 text-amber-400"
         />
 
-        <div className="max-w-6xl mx-auto px-4 md:px-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="max-w-6xl mx-auto px-4 md:px-8 grid grid-cols-1 md:grid-cols-2 gap-6">
           <ToolCard
             index={0}
             icon={<CloudSun size={40} className="text-sky-400" />}
@@ -650,6 +735,7 @@ export default function FeaturedProject() {
             description="A sleek React.js weather app fetching real-time API data including humidity, sunset time, pressure, wind speed, and date-time for any city."
             liveHref="https://garvongit.github.io/weatherly/"
             githubHref="https://github.com/GarvonGit/weatherly"
+            detailHref="/projects/weatherly"
             accentColor="bg-sky-500"
             glowColor="hover:shadow-[0_0_60px_rgba(56,189,248,0.15)]"
           />
@@ -659,18 +745,9 @@ export default function FeaturedProject() {
             title="Live BatS"
             description="A Chrome extension for cricket lovers. Get instant live scores from worldwide leagues and tournaments directly in your browser with one click."
             githubHref="https://github.com/GarvonGit/LIVE-BATS"
+            detailHref="/projects/live-bats"
             accentColor="bg-green-500"
             glowColor="hover:shadow-[0_0_60px_rgba(74,222,128,0.15)]"
-          />
-          <ToolCard
-            index={2}
-            icon={<ListTodo size={40} className="text-amber-400" />}
-            title="Agendo"
-            description="A minimalist, elegant Todo List built with React.js. Features real-time updates, responsive design, and full CRUD operations for task management."
-            liveHref="https://garvongit.github.io/Agendo/"
-            githubHref="https://github.com/GarvonGit/Agendo"
-            accentColor="bg-amber-500"
-            glowColor="hover:shadow-[0_0_60px_rgba(251,191,36,0.15)]"
           />
         </div>
       </section>

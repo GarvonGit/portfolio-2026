@@ -90,7 +90,7 @@ const DEVTOOLS: TechItem[] = [
 /*  Parallax Row Engine                                               */
 /* ------------------------------------------------------------------ */
 const BASE_COUNT = 14; // normalizing baseline
-const BASE_SPEED = 3;
+const BASE_SPEED = 1.0;
 
 interface ParallaxRowProps {
   items: TechItem[];
