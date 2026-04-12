@@ -474,7 +474,7 @@ export default function FeaturedProject() {
             title={<>Gear<span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-400">logy</span></>}
             description="Your premier online destination for electronic gadgets. Discover cutting-edge tech products from smartphones to smart home devices. Shop confidently and experience innovation like never before."
             ctaLabel="Visit Store"
-            ctaHref="https://gearlogy.netlify.app/"
+            ctaHref="https://garvongit.github.io/Gearlogy/"
             githubHref="https://github.com/GarvonGit/Gearlogy"
             detailHref="/projects/gearlogy"
             mockup={
@@ -484,7 +484,7 @@ export default function FeaturedProject() {
                   <div className="w-2.5 h-2.5 rounded-full bg-red-500/50" />
                   <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/50" />
                   <div className="w-2.5 h-2.5 rounded-full bg-green-500/50" />
-                  <div className="mx-auto px-3 py-0.5 rounded bg-white/5 text-[10px] text-neutral-500 font-mono">gearlogy.netlify.app</div>
+                  <div className="mx-auto px-3 py-0.5 rounded bg-white/5 text-[10px] text-neutral-500 font-mono">garvongit.github.io/Gearlogy/</div>
                 </div>
                 <div className="flex-1 p-6 grid grid-cols-3 gap-4">
                   {[

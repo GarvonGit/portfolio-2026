@@ -108,7 +108,7 @@ export default function GearlogyPage() {
           </div>
         ),
 
-        liveHref: "https://gearlogy.netlify.app/",
+        liveHref: "https://garvongit.github.io/Gearlogy/",
         githubHref: "https://github.com/GarvonGit/Gearlogy",
         ctaLabel: "Visit Store",
 
@@ -120,7 +120,7 @@ export default function GearlogyPage() {
               <div className="w-3 h-3 rounded-full bg-yellow-500/60" />
               <div className="w-3 h-3 rounded-full bg-green-500/60" />
               <div className="mx-auto px-4 py-0.5 rounded bg-white/5 border border-white/[0.06] text-[11px] text-neutral-500 font-mono">
-                gearlogy.netlify.app
+                garvongit.github.io/Gearlogy/
               </div>
             </div>
 
