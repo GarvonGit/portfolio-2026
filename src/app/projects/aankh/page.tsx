@@ -1,16 +1,16 @@
+"use client";
+
 import ProjectPageLayout from "@/components/ProjectPageLayout";
 import {
   ShieldCheck, Activity, Users, Database,
   Lock, Zap, BarChart3, Clock,
   Trophy, Medal, MapPin, Smartphone,
   Search, CheckCircle2, Globe, Server,
-  MessageSquare, AlertTriangle, FileText
+  MessageSquare, AlertTriangle, FileText,
+  TrendingUp, TrendingDown, MoreHorizontal,
+  Bell
 } from "lucide-react";
-
-export const metadata = {
-  title: "AANKH — Garv Chouhan",
-  description: "An ML-enabled E-Beat Management System for Gujarat Police. 1st Prize Winner at Azadi Ka Amrit Mahotsav Hackathon.",
-};
+import { motion } from "framer-motion";
 
 export default function AankhPage() {
   return (
@@ -117,18 +117,18 @@ export default function AankhPage() {
         ctaLabel: "View Source on GitHub",
 
         mockupContent: (
-          <div className="w-full bg-[#f4f7f9] min-h-[500px] flex flex-col relative overflow-hidden text-neutral-800">
+          <div className="w-full bg-[#0a0a0a] min-h-[540px] flex flex-col relative overflow-hidden text-white/90 font-sans">
             {/* MUI Sidebar */}
-            <div className="flex h-full">
-              <div className="w-16 md:w-56 bg-[#1976d2] flex flex-col shrink-0">
-                <div className="p-4 flex items-center gap-2 mb-4">
-                  <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center">
-                    <ShieldCheck size={18} className="text-[#1976d2]" />
+            <div className="flex h-full min-h-[540px]">
+              <div className="w-16 md:w-56 bg-[#111] border-r border-white/5 flex flex-col shrink-0">
+                <div className="p-6 flex items-center gap-3">
+                  <div className="w-9 h-9 rounded-xl bg-blue-600 flex items-center justify-center shadow-[0_0_20px_rgba(37,99,235,0.4)]">
+                    <ShieldCheck size={20} className="text-white" />
                   </div>
-                  <span className="hidden md:inline text-white font-bold text-lg tracking-tight">AANKH</span>
+                  <span className="hidden md:inline text-white font-bold text-xl tracking-tight">AANKH</span>
                 </div>
                 
-                <div className="flex flex-col gap-1 px-2">
+                <div className="flex flex-col gap-1 px-3 mt-4">
                    {[
                      { icon: <BarChart3 size={18} />, label: "Dashboard", active: true },
                      { icon: <MapPin size={18} />, label: "Track Now", active: false },
@@ -136,19 +136,20 @@ export default function AankhPage() {
                      { icon: <AlertTriangle size={18} />, label: "Emer. Checkpoints", active: false },
                      { icon: <FileText size={18} />, label: "Complaints", active: false },
                    ].map((item, i) => (
-                     <div key={i} className={`flex items-center gap-3 p-3 rounded-md transition-colors ${item.active ? 'bg-white/15 text-white' : 'text-blue-100 hover:bg-white/5'}`}>
+                     <div key={i} className={`flex items-center gap-3 p-3 rounded-xl transition-all duration-300 ${item.active ? 'bg-blue-600/10 text-blue-400 border border-blue-500/20 shadow-[0_0_20px_rgba(37,99,235,0.05)]' : 'text-neutral-500 hover:text-white hover:bg-white/5'}`}>
                         {item.icon}
-                        <span className="hidden md:inline text-xs font-medium">{item.label}</span>
+                        <span className="hidden md:inline text-[13px] font-semibold">{item.label}</span>
+                        {item.active && <motion.div layoutId="sidebar-active" className="ml-auto w-1.5 h-1.5 rounded-full bg-blue-500 shadow-[0_0_8px_rgba(37,99,235,0.8)]" />}
                      </div>
                    ))}
                 </div>
                 
-                <div className="mt-auto p-4 border-t border-white/10">
-                   <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 rounded-full bg-blue-400/20" />
+                <div className="mt-auto p-4 border-t border-white/5">
+                   <div className="flex items-center gap-3 p-2 rounded-xl bg-white/5 border border-white/5">
+                      <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-[10px] font-bold">GC</div>
                       <div className="hidden md:flex flex-col">
-                         <p className="text-[10px] font-bold text-white leading-none">Admin Unit</p>
-                         <p className="text-[8px] text-blue-200">Gujarat Police</p>
+                         <p className="text-[11px] font-bold text-white leading-none">Garv Chouhan</p>
+                         <p className="text-[9px] text-neutral-500 mt-1 uppercase tracking-tighter">Super Admin</p>
                       </div>
                    </div>
                 </div>
@@ -156,64 +157,175 @@ export default function AankhPage() {
 
               {/* Main Content Area */}
               <div className="flex-1 flex flex-col overflow-hidden">
-                <div className="h-16 bg-white border-b border-neutral-200 flex items-center px-8 justify-between">
-                   <h4 className="text-lg font-bold text-neutral-800">Home Dashboard</h4>
-                   <div className="flex gap-4">
-                      <div className="w-40 h-8 rounded-full bg-neutral-100 border border-neutral-200 flex items-center px-4 gap-2">
-                        <Search size={14} className="text-neutral-400" />
-                        <span className="text-[10px] text-neutral-400">Search officers...</span>
+                <div className="h-20 bg-[#111]/50 backdrop-blur-md border-b border-white/5 flex items-center px-8 justify-between">
+                   <div className="flex flex-col">
+                      <p className="text-[10px] text-blue-400 font-bold uppercase tracking-widest mb-1">Gujarat Police Security</p>
+                      <h4 className="text-xl font-bold text-white">Central Dashboard</h4>
+                   </div>
+                   <div className="flex items-center gap-4">
+                      <div className="hidden md:flex w-64 h-10 rounded-xl bg-black/40 border border-white/5 items-center px-4 gap-3 focus-within:border-blue-500/50 transition-all">
+                        <Search size={16} className="text-neutral-600" />
+                        <span className="text-xs text-neutral-600">Search by Unit ID...</span>
                       </div>
-                      <div className="w-8 h-8 rounded-full bg-neutral-100 flex items-center justify-center">
-                        <Activity size={16} className="text-[#1976d2]" />
+                      <div className="relative w-10 h-10 rounded-xl bg-white/5 border border-white/5 flex items-center justify-center text-neutral-400 hover:text-white transition-colors cursor-pointer">
+                        <Bell size={18} />
+                        <div className="absolute top-2 right-2 w-2 h-2 rounded-full bg-red-500 border-2 border-[#111]" />
                       </div>
                    </div>
                 </div>
 
-                <div className="flex-1 p-6 bg-[#f4f7f9] space-y-6">
+                <div className="flex-1 p-8 bg-[#0a0a0a] space-y-8 overflow-y-auto custom-scrollbar">
                    {/* Top Cards */}
-                   <div className="grid grid-cols-12 gap-4">
+                   <div className="grid grid-cols-12 gap-5">
                      {[
-                       { label: "Active Beat Officers", val: "1,482", color: "border-blue-500" },
-                       { label: "Pending Complaints", val: "24", color: "border-orange-500" },
-                       { label: "Resolved Today", val: "156", color: "border-green-500" },
-                       { label: "Emergency Alerts", val: "0", color: "border-neutral-300" },
+                       { label: "Active Officers", val: "1,482", delta: "+12%", trend: "up", color: "text-blue-400" },
+                       { label: "Pending Issues", val: "24", delta: "-8%", trend: "down", color: "text-orange-400" },
+                       { label: "Resolved Today", val: "156", delta: "Normal", trend: "neutral", color: "text-green-400" },
+                       { label: "Alert Level", val: "DEFCON 4", delta: "Stable", trend: "neutral", color: "text-neutral-400" },
                      ].map((c, i) => (
-                       <div key={i} className={`col-span-3 bg-white rounded-lg shadow-sm border-l-4 ${c.color} p-4`}>
-                          <p className="text-[9px] text-neutral-500 uppercase font-bold">{c.label}</p>
-                          <p className="text-xl font-bold text-neutral-800">{c.val}</p>
-                       </div>
+                       <motion.div 
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: i * 0.1 }}
+                        key={i} 
+                        className="col-span-3 bg-[#111]/60 border border-white/5 p-5 rounded-2xl relative overflow-hidden group"
+                       >
+                          <div className={`absolute top-0 left-0 w-1 h-full bg-current ${c.color} opacity-50`} />
+                          <p className="text-[10px] text-neutral-500 uppercase font-bold tracking-wider mb-2">{c.label}</p>
+                          <div className="flex items-baseline gap-2">
+                             <p className="text-2xl font-bold text-white tracking-tight">{c.val}</p>
+                             <span className={`text-[10px] font-bold ${c.trend === 'up' ? 'text-green-500' : c.trend === 'down' ? 'text-red-500' : 'text-neutral-600'}`}>
+                               {c.trend === 'up' && <TrendingUp size={10} className="inline mr-0.5" />}
+                               {c.trend === 'down' && <TrendingDown size={10} className="inline mr-0.5" />}
+                               {c.delta}
+                             </span>
+                          </div>
+                       </motion.div>
                      ))}
                    </div>
 
-                   {/* Map Preview Area */}
-                   <div className="flex-1 min-h-[220px] bg-white rounded-lg shadow-sm border border-neutral-200 p-4 flex flex-col gap-4">
-                      <div className="flex justify-between items-center">
-                         <span className="text-xs font-bold text-neutral-700">Track Now Live — Gandhinagar Sector</span>
-                         <span className="text-[10px] px-2 py-0.5 rounded bg-blue-100 text-[#1976d2] font-mono">14 Units Online</span>
-                      </div>
-                      <div className="flex-1 rounded-md bg-neutral-50 border border-neutral-200 relative overflow-hidden flex items-center justify-center">
-                         <div className="absolute inset-0 bg-[radial-gradient(#1976d2_1px,transparent_1px)] bg-[size:16px_16px] opacity-[0.05]" />
-                         <MapPin size={40} className="text-[#1976d2] opacity-10" />
-                         <div className="absolute top-1/4 left-1/3 w-2.5 h-2.5 rounded-full bg-[#1976d2] shadow-[0_0_10px_#1976d2]" />
-                         <div className="absolute top-1/2 left-2/3 w-2.5 h-2.5 rounded-full bg-[#1976d2] shadow-[0_0_10px_#1976d2]" />
-                         <div className="absolute bottom-1/4 left-1/2 w-2.5 h-2.5 rounded-full bg-[#f57c00] shadow-[0_0_10px_#f57c00]" />
-                      </div>
+                   <div className="grid grid-cols-12 gap-8">
+                     {/* Map Preview Area */}
+                     <div className="col-span-8 bg-[#111]/40 rounded-3xl border border-white/5 p-6 flex flex-col gap-6 relative overflow-hidden group">
+                        <div className="flex justify-between items-center relative z-10">
+                           <div className="flex flex-col">
+                              <span className="text-sm font-bold text-white mb-1 flex items-center gap-2">
+                                 <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+                                 Live Tracking — Sector 4C
+                              </span>
+                              <span className="text-[10px] text-neutral-500 uppercase tracking-widest font-mono">Gandhinagar, District 1</span>
+                           </div>
+                           <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-blue-500/10 text-blue-400 font-mono text-[10px] border border-blue-500/20">
+                              <Activity size={12} /> 14 Units Active
+                           </div>
+                        </div>
+                        
+                        <div className="flex-1 min-h-[220px] rounded-2xl bg-[#080808] border border-white/5 relative overflow-hidden flex items-center justify-center">
+                           <div className="absolute inset-0 bg-[radial-gradient(#3b82f6_1.5px,transparent_1.5px)] bg-[size:24px_24px] opacity-10" />
+                           
+                           {/* Radar Ping Effect */}
+                           <motion.div 
+                              animate={{ scale: [1, 2, 2.5], opacity: [0.5, 0.2, 0] }}
+                              transition={{ repeat: Infinity, duration: 3, ease: "easeOut" }}
+                              className="absolute w-64 h-64 rounded-full border border-blue-500/30" 
+                           />
+                           <motion.div 
+                              animate={{ scale: [1, 2, 2.5], opacity: [0.4, 0.1, 0] }}
+                              transition={{ repeat: Infinity, duration: 3, delay: 1, ease: "easeOut" }}
+                              className="absolute w-64 h-64 rounded-full border border-blue-500/20" 
+                           />
+                           
+                           <MapPin size={48} className="text-blue-500 opacity-5" />
+                           
+                           {/* Active Markers */}
+                           {[
+                              { top: '25%', left: '35%', color: 'blue', label: 'Unit 402' },
+                              { top: '55%', left: '68%', color: 'blue', label: 'Unit 115' },
+                              { bottom: '22%', left: '48%', color: 'orange', label: 'Incident' }
+                           ].map((m, idx) => (
+                              <div key={idx} className="absolute group/marker" style={{ top: m.top, left: m.left, bottom: m.bottom }}>
+                                 <div className={`w-3 h-3 rounded-full ${m.color === 'blue' ? 'bg-blue-500 shadow-[0_0_15px_#3b82f6]' : 'bg-orange-500 shadow-[0_0_15px_#f97316]'} relative`}>
+                                    <div className="absolute inset-0 animate-ping opacity-75 rounded-full bg-current" />
+                                 </div>
+                                 <div className="absolute top-4 left-1/2 -translate-x-1/2 px-2 py-0.5 rounded bg-black/80 backdrop-blur-md border border-white/10 text-[8px] font-bold opacity-0 group-hover/marker:opacity-100 transition-opacity whitespace-nowrap">
+                                    {m.label}
+                                 </div>
+                              </div>
+                           ))}
+
+                           {/* Map Hud */}
+                           <div className="absolute bottom-4 right-4 flex flex-col gap-1">
+                              <div className="w-16 h-1.5 rounded-full bg-white/5 overflow-hidden">
+                                 <motion.div animate={{ width: ['20%', '60%', '40%'] }} transition={{ repeat: Infinity, duration: 4 }} className="h-full bg-blue-500" />
+                              </div>
+                              <p className="text-[7px] text-neutral-600 font-mono text-right">SCANNING...</p>
+                           </div>
+                        </div>
+                     </div>
+
+                     {/* Sidebar Analysis Area */}
+                     <div className="col-span-4 space-y-5">
+                         <div className="bg-[#111]/60 border border-white/5 rounded-3xl p-6 flex flex-col h-full">
+                            <h5 className="text-xs font-bold text-white mb-4 uppercase tracking-wider flex items-center justify-between">
+                               Duty Logs
+                               <MoreHorizontal size={14} className="text-neutral-500" />
+                            </h5>
+                            <div className="space-y-4 flex-1">
+                               {[
+                                 { name: 'Patrol 14A', time: '2m ago', status: 'En-route', icon: <Smartphone size={12} /> },
+                                 { name: 'Beat Unit 9', time: '14m ago', status: 'On-duty', icon: <CheckCircle2 size={12} /> },
+                                 { name: 'Sector Alpha', time: '22m ago', status: 'Standby', icon: <Server size={12} /> },
+                               ].map((log, i) => (
+                                 <div key={i} className="flex items-center gap-3 p-3 rounded-2xl bg-white/5 border border-white/5 group hover:bg-white/10 transition-colors">
+                                    <div className="w-8 h-8 rounded-xl bg-black/40 flex items-center justify-center text-blue-400">
+                                       {log.icon}
+                                    </div>
+                                    <div className="flex-1">
+                                       <p className="text-[11px] font-bold text-white">{log.name}</p>
+                                       <p className="text-[9px] text-neutral-500">{log.status}</p>
+                                    </div>
+                                    <p className="text-[9px] font-mono text-neutral-600">{log.time}</p>
+                                 </div>
+                               ))}
+                            </div>
+                            <div className="mt-6 pt-4 border-t border-white/5">
+                               <div className="flex items-center justify-between mb-2">
+                                  <p className="text-[10px] text-neutral-500">System Capacity</p>
+                                  <p className="text-[10px] font-bold text-blue-400">88%</p>
+                               </div>
+                               <div className="w-full h-1.5 rounded-full bg-white/5 overflow-hidden">
+                                  <div className="w-[88%] h-full bg-gradient-to-r from-blue-600 to-indigo-500" />
+                               </div>
+                            </div>
+                         </div>
+                     </div>
                    </div>
                 </div>
               </div>
             </div>
             
             {/* Hackathon Overlay */}
-            <div className="absolute bottom-4 right-4 bg-white/90 backdrop-blur-sm border border-blue-200 shadow-xl rounded-xl p-4 flex items-center gap-4 z-20">
-               <div className="w-12 h-12 rounded-full bg-blue-600 flex items-center justify-center">
-                  <Trophy size={20} className="text-white" />
+            <motion.div 
+               initial={{ opacity: 0, x: 100 }}
+               animate={{ opacity: 1, x: 0 }}
+               transition={{ delay: 0.8 }}
+               className="absolute bottom-6 right-6 bg-[#1a1a1a]/95 backdrop-blur-xl border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)] rounded-[2rem] p-5 flex items-center gap-5 z-20 group hover:scale-105 transition-transform duration-500"
+            >
+               <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-600 to-blue-800 flex items-center justify-center shadow-[0_0_20px_rgba(37,99,235,0.3)]">
+                  <Trophy size={24} className="text-white" />
                </div>
                <div>
-                  <p className="text-[10px] font-bold text-blue-600 uppercase tracking-widest leading-none mb-1">Hackathon 1st Prize</p>
-                  <p className="text-xs font-bold text-neutral-800">Azadi Ka Amrit Mahotsav</p>
-                  <p className="text-[8px] text-neutral-500 font-mono">36 Hour Development Sprint</p>
+                  <div className="flex items-center gap-2 mb-1">
+                     <p className="text-[10px] font-bold text-blue-400 uppercase tracking-[0.2em] leading-none">Winner</p>
+                     <div className="h-px flex-1 bg-blue-500/20" />
+                  </div>
+                  <p className="text-[15px] font-bold text-white tracking-tight">1st Prize Winner</p>
+                  <p className="text-[9px] text-neutral-400 font-medium">Azadi Ka Amrit Mahotsav Hackathon</p>
                </div>
-            </div>
+               <div className="ml-4 w-8 h-8 rounded-full bg-white/5 flex items-center justify-center border border-white/10 group-hover:bg-blue-600 group-hover:border-blue-500 transition-colors">
+                  <Medal size={14} className="text-white" />
+               </div>
+            </motion.div>
           </div>
         ),
       }}
